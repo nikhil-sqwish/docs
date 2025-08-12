@@ -31,18 +31,18 @@
   },
   "logo": {
     "light": "/logo/light.png",
-    "dark": "/logo/dark.png"
+    "dark": "/logo/light.png"
   },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:support@sqwish.ai"
+        "label": "Website",
+        "href": "https://www.sqwish.ai"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Get Started",
+      "label": "Platform",
       "href": "https://demo.sqwish.ai"
     }
   },
