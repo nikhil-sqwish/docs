@@ -1,0 +1,72 @@
+---
+title: "Getting Started"
+description: "Learn how to use the Sqwish API with basic examples"
+---
+
+## Basic Usage
+
+After setting your API key, you can optimize prompts easily. Here's a quick example showing how to optimize a prompt and inspect additional metadata returned by the API:
+
+<Tabs>
+
+<Tab title="Python">
+
+```python
+from sqwishai import Sqwish
+import os
+
+sqwish_client = Sqwish(os.environ.get("SQWISH_API_KEY"))
+
+input_prompt = "Write a haiku about recursion in programming."
+response = sqwish_client.text.optimize(input_prompt)
+```
+
+</Tab>
+
+<Tab title="JavaScript">
+
+```javascript
+const { Sqwish } = require('sqwishai');
+const sqwishClient = new Sqwish(process.env.SQWISH_API_KEY);
+
+const inputPrompt = "Write a haiku about recursion in programming.";
+const response = sqwishClient.text.optimize(inputPrompt);
+```
+
+</Tab>
+
+<Tab title="cURL">
+
+```bash
+curl -X POST "https://api.sqwish.ai/v1/optimization/optimize" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $SQWISH_API_KEY" \
+  -d '{
+    "text": "Write a haiku about recursion in programming.",
+    "target_model": "gpt4o",
+    "optimization_model": "latest"
+}'
+```
+
+</Tab>
+
+</Tabs>
+
+## Response Format
+
+The API returns a JSON response with the following structure:
+
+```json
+{
+  "message": "The optimized text prompt",
+  "tokens_reduced": 150
+}
+```
+
+Where:
+- `message`: The optimized version of your input text
+- `tokens_reduced`: Number of tokens saved by the optimization
+
+## Advanced Usage
+
+For more complex scenarios and direct REST API calls, see the [API Reference](/api-reference) section.

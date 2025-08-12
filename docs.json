@@ -3,11 +3,11 @@
   "theme": "almond",
   "name": "Sqwish Docs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#00e283",
+    "light": "#ef8ed8",
+    "dark": "#ffc100"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.ico",
   "navigation": {
     "tabs": [
       {
@@ -15,23 +15,23 @@
         "groups": [
           {
             "group": "Getting Started",
-            "pages": ["introduction", "setup", "getting-started"]
+            "pages": ["index", "setup", "getting-started"]
           },
           {
             "group": "API Reference",
-            "pages": ["api-reference", "api-reference/optimize-endpoint"]
+            "pages": ["api-reference/introduction", "api-reference/endpoint/optimize"]
           },
           {
             "group": "Help & Support",
-            "pages": ["back to Dashboard","troubleshooting", "use-cases"]
+            "pages": ["troubleshooting", "use-cases"]
           }
         ]
       }
     ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/light.png",
+    "dark": "/logo/dark.png"
   },
   "navbar": {
     "links": [

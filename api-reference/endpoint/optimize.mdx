@@ -1,0 +1,172 @@
+---
+title: "Optimize Endpoint"
+description: "Optimize text prompts to reduce token usage"
+---
+
+## Optimize Text
+
+Optimize long text prompts into shorter, token-efficient versions.
+
+<Note>
+  This is the main endpoint for text optimization. It accepts any text input and returns an optimized version with reduced token count.
+</Note>
+
+### Endpoint
+
+```
+POST /v1/optimization/optimize
+```
+
+### Request Headers
+
+| Header | Type | Required | Description |
+|--------|------|----------|-------------|
+| `Authorization` | string | Yes | Bearer token with your API key |
+| `Content-Type` | string | Yes | Must be `application/json` |
+
+### Request Body
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `text` | string | Yes | The text prompt to optimize |
+| `target_model` | string | No | Target model for optimization (default: "gpt4o") |
+| `optimization_model` | string | No | Optimization model to use (default: "latest") |
+
+### Example Request
+
+```bash
+curl -X POST "https://api.sqwish.ai/v1/optimization/optimize" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $SQWISH_API_KEY" \
+  -d '{
+    "text": "Write a detailed blog post about recursion in programming.",
+    "target_model": "gpt4o",
+    "optimization_model": "latest"
+}'
+```
+
+### Response
+
+The API returns a JSON response with the optimized text and token reduction information.
+
+#### Success Response (200)
+
+```json
+{
+  "message": "Write a blog post about recursion in programming.",
+  "tokens_reduced": 8
+}
+```
+
+#### Response Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `message` | string | The optimized text prompt |
+| `tokens_reduced` | integer | Number of tokens saved by optimization |
+
+### Code Examples
+
+<Tabs>
+
+<Tab title="Python">
+
+```python
+import requests
+import os
+
+headers = {
+  "Authorization": f"Bearer {os.environ.get('SQWISH_API_KEY')}",
+  "Content-Type": "application/json"
+}
+
+payload = {
+  "text": "Write a detailed blog post about recursion in programming.",
+  "target_model": "gpt4o",
+  "optimization_model": "latest"
+}
+
+response = requests.post("https://api.sqwish.ai/v1/optimization/optimize", json=payload, headers=headers)
+data = response.json()
+
+print("Optimized message:", data["message"])
+print("Tokens Saved:", data["tokens_reduced"])
+```
+
+</Tab>
+
+<Tab title="JavaScript">
+
+```javascript
+// Using fetch in JavaScript:
+fetch("https://api.sqwish.ai/v1/optimization/optimize", {
+  method: "POST",
+  headers: {
+    "Authorization": `Bearer ${process.env.SQWISH_API_KEY}`,
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    text: "Write a detailed blog post about recursion in programming.",
+    target_model: "gpt4o",
+    optimization_model: "latest"
+  })
+})
+.then(response => response.json())
+.then(data => {
+  console.log("Optimized message:", data.message);
+  console.log("Tokens Saved:", data.tokens_reduced);
+});
+```
+
+</Tab>
+
+<Tab title="cURL">
+
+```bash
+curl -X POST "https://api.sqwish.ai/v1/optimization/optimize" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $SQWISH_API_KEY" \
+  -d '{
+    "text": "Write a detailed blog post about recursion in programming.",
+    "target_model": "gpt4o",
+    "optimization_model": "latest"
+}'
+```
+
+</Tab>
+
+</Tabs>
+
+### Error Responses
+
+#### 400 Bad Request
+
+```json
+{
+  "error": "Invalid text parameter"
+}
+```
+
+#### 401 Unauthorized
+
+```json
+{
+  "error": "Invalid API key"
+}
+```
+
+#### 429 Rate Limit Exceeded
+
+```json
+{
+  "error": "Rate limit exceeded. Please try again later."
+}
+```
+
+#### 500 Internal Server Error
+
+```json
+{
+  "error": "Internal server error"
+}
+```

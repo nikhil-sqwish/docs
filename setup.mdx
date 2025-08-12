@@ -1,0 +1,200 @@
+---
+title: "Setup"
+description: "Install and configure the Sqwish client library"
+---
+
+## Get Your API Key
+
+Before you can use the Sqwish API, you'll need to get an API key. 
+
+<Card
+  title="Get API Key"
+  icon="key"
+  href="https://demo.sqwish.ai"
+  horizontal
+>
+  Visit our demo site to sign up and get your API key.
+</Card>
+
+### API Key Management
+
+Once you have your API key, you can manage it through your dashboard:
+
+- **View usage**: Monitor your API calls and token usage
+- **Regenerate keys**: Create new keys if needed
+- **Set limits**: Configure rate limits and usage alerts
+
+## Installation
+
+Below are the instructions to install and initialize the Sqwish client library in your preferred language:
+
+<Tabs>
+
+<Tab title="Python">
+
+```python
+pip install sqwishai
+
+# Then set your API key as an environment variable or in your code:
+# import os
+# os.environ["SQWISH_API_KEY"] = "YOUR_API_KEY"
+```
+
+</Tab>
+
+<Tab title="JavaScript">
+
+```javascript
+npm install sqwishai
+
+// Then set your API key as an environment variable
+// process.env.SQWISH_API_KEY = "YOUR_API_KEY"
+```
+
+</Tab>
+
+<Tab title="cURL">
+
+```bash
+# There's no installation via curl. 
+# Just ensure you have an API key. E.g.:
+# export SQWISH_API_KEY=YOUR_API_KEY
+```
+
+</Tab>
+
+</Tabs>
+
+## Environment Variables
+
+Set your API key as an environment variable:
+
+### Linux/macOS
+
+```bash
+export SQWISH_API_KEY=your_api_key_here
+```
+
+### Windows
+
+```cmd
+set SQWISH_API_KEY=your_api_key_here
+```
+
+### Using .env file
+
+Create a `.env` file in your project root:
+
+```bash
+SQWISH_API_KEY=your_api_key_here
+```
+
+Then load it in your application:
+
+<Tabs>
+
+<Tab title="Python">
+
+```python
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # Load environment variables from .env file
+api_key = os.getenv("SQWISH_API_KEY")
+```
+
+</Tab>
+
+<Tab title="JavaScript">
+
+```javascript
+require('dotenv').config();
+const apiKey = process.env.SQWISH_API_KEY;
+```
+
+</Tab>
+
+</Tabs>
+
+## Pricing & Limits
+
+### Free Tier
+- **100 requests per hour**
+- **Perfect for testing and small projects**
+- **No credit card required**
+
+### Pro Tier
+- **10,000 requests per hour**
+- **Priority support**
+- **Advanced features**
+
+### Enterprise
+- **Custom limits**
+- **Dedicated support**
+- **SLA guarantees**
+
+<Note>
+  All plans include the same API features. The difference is in rate limits and support levels.
+</Note>
+
+## Quick Test
+
+Once you have your API key set up, you can test it with a simple request:
+
+<Tabs>
+
+<Tab title="Python">
+
+```python
+from sqwishai import Sqwish
+import os
+
+# Initialize the client
+sqwish_client = Sqwish(os.environ.get("SQWISH_API_KEY"))
+
+# Test with a simple prompt
+test_prompt = "Hello, this is a test prompt."
+response = sqwish_client.text.optimize(test_prompt)
+
+print(f"Original: {test_prompt}")
+print(f"Optimized: {response}")
+```
+
+</Tab>
+
+<Tab title="JavaScript">
+
+```javascript
+const { Sqwish } = require('sqwishai');
+
+// Initialize the client
+const sqwishClient = new Sqwish(process.env.SQWISH_API_KEY);
+
+// Test with a simple prompt
+const testPrompt = "Hello, this is a test prompt.";
+const response = sqwishClient.text.optimize(testPrompt);
+
+console.log(`Original: ${testPrompt}`);
+console.log(`Optimized: ${response}`);
+```
+
+</Tab>
+
+<Tab title="cURL">
+
+```bash
+curl -X POST "https://api.sqwish.ai/v1/optimization/optimize" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $SQWISH_API_KEY" \
+  -d '{
+    "text": "Hello, this is a test prompt."
+}'
+```
+
+</Tab>
+
+</Tabs>
+
+## Next Steps
+
+Once you have your API key set up and tested, you can proceed to the [Getting Started](/getting-started) guide to learn how to use the API for more complex scenarios.

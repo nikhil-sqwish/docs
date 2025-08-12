@@ -1,97 +1,103 @@
 ---
 title: "Introduction"
-description: "Welcome to the new home for your documentation"
+description: "Welcome to the Sqwish API documentation"
 ---
 
-## Setting up
+## Welcome to Sqwish API
 
-Get your documentation site up and running in minutes.
+Welcome to the Sqwish API documentation. This guide will help you understand how to use our real-time prompt optimization API.
+
+With Sqwish, you can optimize long text prompts into shorter, token-efficient versions, saving computation and costs when working with large language models.
 
 <Card
-  title="Start here"
+  title="Get Started"
   icon="rocket"
-  href="/quickstart"
+  href="/setup"
   horizontal
 >
-  Follow our three step quickstart guide.
+  Set up your API key and start optimizing prompts in minutes.
 </Card>
 
-## Make it yours
-
-Design a docs site that looks great and empowers your users.
+## Key Features
 
 <Columns cols={2}>
   <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
+    title="Real-time Optimization"
+    icon="bolt"
   >
-    Edit your docs locally and preview them in real time.
+    Optimize prompts instantly with our advanced AI models.
   </Card>
   <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
+    title="Token Reduction"
+    icon="chart-line-down"
   >
-    Customize the design and colors of your site to match your brand.
-  </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
+    Save costs by reducing token usage while maintaining quality.
   </Card>
   <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
-  >
-    Auto-generate API documentation from OpenAPI specifications.
-  </Card>
-</Columns>
-
-## Create beautiful pages
-
-Everything you need to create world-class documentation.
-
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
-  </Card>
-  <Card
-    title="Code samples"
+    title="Multiple Languages"
     icon="code"
-    href="/essentials/code"
   >
-    Add sample code to demonstrate how to use your product.
+    Support for Python, JavaScript, and direct API calls.
   </Card>
   <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
+    title="Easy Integration"
+    icon="plug"
   >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
+    Simple REST API that works with any application.
   </Card>
 </Columns>
 
-## Need inspiration?
+## Quick Example
 
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+<Tabs>
+
+<Tab title="Python">
+
+```python
+from sqwishai import Sqwish
+import os
+
+sqwish_client = Sqwish(os.environ.get("SQWISH_API_KEY"))
+
+input_prompt = "Write a haiku about recursion in programming."
+response = sqwish_client.text.optimize(input_prompt)
+```
+
+</Tab>
+
+<Tab title="JavaScript">
+
+```javascript
+const { Sqwish } = require('sqwishai');
+const sqwishClient = new Sqwish(process.env.SQWISH_API_KEY);
+
+const inputPrompt = "Write a haiku about recursion in programming.";
+const response = sqwishClient.text.optimize(inputPrompt);
+```
+
+</Tab>
+
+<Tab title="cURL">
+
+```bash
+curl -X POST "https://api.sqwish.ai/v1/optimization/optimize" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $SQWISH_API_KEY" \
+  -d '{
+    "text": "Write a haiku about recursion in programming.",
+    "target_model": "gpt4o",
+    "optimization_model": "latest"
+}'
+```
+
+</Tab>
+
+</Tabs>
+
+## Use Cases
+
+- **Reduce latency** in real-time or low-latency environments
+- **Handle longer documents** within a single context window
+- **Keep chatbots snappy** even as conversations grow
+- **Lower costs** for frequent short prompts
+- **Fit more documents** into RAG flows

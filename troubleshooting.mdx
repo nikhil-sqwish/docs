@@ -1,0 +1,115 @@
+---
+title: "Troubleshooting"
+description: "Common issues and solutions for the Sqwish API"
+---
+
+## Common Issues
+
+If you encounter issues, here are some common errors and solutions:
+
+### Authentication Errors
+
+#### Error 401: Unauthorized
+
+**Problem**: Invalid or missing API key
+
+**Solution**: 
+- Check that your API key is correct
+- Ensure the API key is set as an environment variable
+- Verify the Authorization header format: `Bearer YOUR_API_KEY`
+
+```bash
+# Check your API key
+echo $SQWISH_API_KEY
+```
+
+### Request Errors
+
+#### Error 400: Bad Request
+
+**Problem**: Invalid request parameters
+
+**Solution**:
+- Ensure the `text` parameter is provided and is a string
+- Check that the JSON payload is properly formatted
+- Verify the Content-Type header is set to `application/json`
+
+#### Error 429: Rate Limit Exceeded
+
+**Problem**: Too many requests in a short time period
+
+**Solution**:
+- Check your current usage in the [dashboard](https://sqwish.ai/dashboard)
+- Wait before making additional requests
+- Consider upgrading your plan for higher rate limits
+
+### Server Errors
+
+#### Error 500: Internal Server Error
+
+**Problem**: Server-side error
+
+**Solution**:
+- Try the request again after a few minutes
+- Check our [status page](https://status.sqwish.ai) for service updates
+- Contact support if the issue persists
+
+### Client Library Issues
+
+#### Python Import Error
+
+```python
+ModuleNotFoundError: No module named 'sqwishai'
+```
+
+**Solution**:
+```bash
+pip install sqwishai
+```
+
+#### JavaScript Import Error
+
+```javascript
+Cannot find module 'sqwishai'
+```
+
+**Solution**:
+```bash
+npm install sqwishai
+```
+
+### Environment Variable Issues
+
+#### API Key Not Found
+
+**Problem**: Environment variable not set correctly
+
+**Solution**:
+
+**Linux/macOS**:
+```bash
+export SQWISH_API_KEY=your_api_key_here
+```
+
+**Windows**:
+```cmd
+set SQWISH_API_KEY=your_api_key_here
+```
+
+**Using .env file**:
+```bash
+# Create .env file
+echo "SQWISH_API_KEY=your_api_key_here" > .env
+```
+
+## Getting Help
+
+If you're still experiencing issues:
+
+1. **Check the logs**: Look for detailed error messages in your application logs
+2. **Review the documentation**: Ensure you're following the correct API usage patterns
+3. **Contact support**: Email us at [support@sqwish.ai](mailto:support@sqwish.ai) with:
+   - Your API key (first 8 characters only)
+   - Error message and code
+   - Request payload (if applicable)
+   - Steps to reproduce the issue
